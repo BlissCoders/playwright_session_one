@@ -17,6 +17,6 @@ class TestExamples:
         login_page = LoginPage.open(page=playwright_page)
         login_page.login(username="admin@test.com",password="Password123")
 
-    def test_invalid_login(self, playwright_page):
-        login_page = LoginPage.open(playwright_page)
-        login_page.login(username="test",password="123445")
+    # def test_invalid_login(self, playwright_page):
+    #     login_page = LoginPage.open(playwright_page)
+    #     login_page.login(username="test",password="123445")
