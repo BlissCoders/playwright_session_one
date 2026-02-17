@@ -8,7 +8,7 @@ class LoginPage:
         self.success_message = page.get_by_role("alert")
 
     @classmethod
-    def open(cls, page, url:str="http://192.168.1.79:5000/login") -> 'LoginPage':
+    def open(cls, page, url:str="https://blisscoders.pythonanywhere.com/login") -> 'LoginPage':
         page.goto(url)
         return cls(page)
 
