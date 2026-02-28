@@ -11,6 +11,11 @@ on:
         description: 'Run specific tests (e.g., -k "login" or -m "smoke")'
         required: false
         default: ''
+      record_video:
+        description: 'Record video of the test run?'
+        type: boolean
+        default: false
+
 
 jobs:
   test:
@@ -32,6 +37,10 @@ jobs:
         run: playwright install --with-deps
 
       - name: Run pytest
+        # Mapping inputs to environment variables for conftest.py
+        env:
+          RECORD_VIDEO: {{github.even.inputs.record_video || 'false' }}
+
         # Use the input if provided, otherwise run all tests in the tests folder
         run: pytest -v -s --disable-warnings ${{ github.event.inputs.test_filter }} tests
 
@@ -43,6 +52,6 @@ jobs:
           path: |
             tests-results/videos/
             tests-results/screenshots/
-            reports/*.html
+            tests-results/reports/*.html
           if-no-files-found: warn
           retention-days: 7
