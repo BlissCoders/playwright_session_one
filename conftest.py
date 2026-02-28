@@ -44,5 +44,5 @@ def pytest_configure(config):
     if not os.path.exists(report_path):
         os.makedirs(report_path, exist_ok=True)
 
-    config.option.htmlpath = f"{report_path}report_{now}.html"
+    config.option.htmlpath = f"{report_path}/report_{now}.html"
     config.option.self_contained_html = True
