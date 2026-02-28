@@ -39,7 +39,7 @@ jobs:
       - name: Run pytest
         # Mapping inputs to environment variables for conftest.py
         env:
-          RECORD_VIDEO: {{github.even.inputs.record_video || 'false' }}
+          RECORD_VIDEO: {{github.event.inputs.record_video || 'false' }}
 
         # Use the input if provided, otherwise run all tests in the tests folder
         run: pytest -v -s --disable-warnings ${{ github.event.inputs.test_filter }} tests
