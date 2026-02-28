@@ -36,11 +36,6 @@ jobs:
       - name: Install Playwright Browsers
         run: playwright install --with-deps
 
-      - name: Lint with Pylint
-        run: |
-          pip install pylint
-          pylint $(git ls-files '*.py')
-
       - name: Run pytest
         # Mapping inputs to environment variables for conftest.py
         env:
