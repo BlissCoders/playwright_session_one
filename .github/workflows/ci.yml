@@ -28,6 +28,11 @@ jobs:
         with:
           python-version: '3.12.4'
 
+      - name: Lint with Pylint
+        run: |
+          pip install pylint
+          pylint $(git ls-files '*.py')
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
