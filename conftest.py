@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 import pytest
 from playwright.sync_api import sync_playwright
@@ -31,3 +32,17 @@ def playwright_page(request):
 
             # Now it's safe to close browser
             browser.close()
+
+
+def pytest_configure(config):
+    # This overrides the .ini setting with a timestamped filename
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+    # Create directories
+    root_dir = config.rootpath
+    report_path = os.path.join(root_dir, "reports")
+    if not os.path.exists(report_path):
+        os.makedirs(report_path, exist_ok=True)
+
+    config.option.htmlpath = f"{report_path}report_{now}.html"
+    config.option.self_contained_html = True
